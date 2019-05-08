@@ -46,6 +46,20 @@ jobs:
       on:
         tags: true
         repo: donmahallem/TrapezeApiExpressServer
+  - stage: npm next release
+    node_js: '10'
+    script:
+    - npm run build
+    - npm version next
+    if: branch = dev
+    deploy:
+      provider: npm
+      skip_cleanup: true
+      email: $npm_email
+      api_key: $npm_api_key
+      on:
+        tags: true
+        repo: donmahallem/TrapezeApiExpressServer
   - stage: github pages release
     node_js: '10'
     script:
