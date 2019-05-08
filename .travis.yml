@@ -25,6 +25,12 @@ matrix:
       env: TEST_SUITE=docs
     - node_js: "9"
       env: TEST_SUITE=api-docs
+    - node_js: "10"
+      env: TEST_SUITE=lint
+    - node_js: "10"
+      env: TEST_SUITE=docs
+    - node_js: "10"
+      env: TEST_SUITE=api-docs
 cache:
   directories:
   - node_modules
