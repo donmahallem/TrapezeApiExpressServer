@@ -3,6 +3,7 @@ node_js:
   - "8"
   - "9"
   - "10"
+  - "stable"
 env:
   matrix:
   - TEST_SUITE=lint
@@ -35,7 +36,7 @@ after_success:
 jobs:
   include:
   - stage: npm release
-    node_js: '10'
+    node_js: stable
     script: npm run build
     if: tag IS present
     deploy:
@@ -47,11 +48,11 @@ jobs:
         tags: true
         repo: donmahallem/TrapezeApiExpressServer
   - stage: npm next release
-    node_js: '10'
+    node_js: stable
     script:
     - npm run build
-    - npm version next
-    if: branch = dev
+    - npm version from-git
+    if: branch = dev AND tag IS present
     deploy:
       provider: npm
       skip_cleanup: true
@@ -61,7 +62,7 @@ jobs:
         tags: true
         repo: donmahallem/TrapezeApiExpressServer
   - stage: github pages release
-    node_js: '10'
+    node_js: stable
     script:
     - npm run docs
     - npm run api-docs
