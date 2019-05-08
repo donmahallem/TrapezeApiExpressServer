@@ -3,7 +3,7 @@ import * as express from "express";
 import { Config } from "./config";
 const app: express.Application = express();
 
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
@@ -11,6 +11,7 @@ app.use(function(req, res, next) {
 app.use("/api", createTrapezeApiRoute(Config.endpoint));
 app.use(express.static("./../dist/static"));
 
-app.listen(Config.port, function() {
+app.listen(Config.port, () => {
+    // tslint:disable-next-line:no-console
     console.log("Example app listening on port " + Config.port + ' with endpoint "' + Config.endpoint + '"!');
 });

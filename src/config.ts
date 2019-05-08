@@ -1,30 +1,29 @@
 import * as nconf from "nconf";
-import * as URL from "url";
 
 export class Config {
-    private static _nconf: nconf.Provider;
+    private static sNconf: nconf.Provider;
     private static get nconf(): nconf.Provider {
-        if (Config._nconf) {
-            return Config._nconf;
+        if (Config.sNconf) {
+            return Config.sNconf;
         }
-        Config._nconf = new nconf.Provider({})
+        Config.sNconf = new nconf.Provider({})
             .file("config.json")
             .argv({
+                e: {
+                    alias: "endpoint",
+                    demand: true,
+                    describe: "the endpoint to use",
+                },
                 p: {
                     alias: "port",
                     describe: "the port to run on",
                 },
-                e: {
-                    alias: "endpoint",
-                    describe: "the endpoint to use",
-                    demand: true,
-                },
             }).defaults({
-                port: 3000,
                 endpoint: undefined,
+                port: 3000,
             });
-        const parsedUrl = URL.parse(Config._nconf.get("endpoint"));
-        return Config._nconf;
+        // const parsedUrl = URL.parse(Config.sNconf.get("endpoint"));
+        return Config.sNconf;
     }
 
     /**
