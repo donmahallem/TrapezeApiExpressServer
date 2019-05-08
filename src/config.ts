@@ -2,7 +2,7 @@ import * as nconf from "nconf";
 import * as URL from "url";
 
 export class Config {
-    private static _nconf: nconf.Provider
+    private static _nconf: nconf.Provider;
     private static get nconf(): nconf.Provider {
         if (Config._nconf) {
             return Config._nconf;
@@ -10,20 +10,20 @@ export class Config {
         Config._nconf = new nconf.Provider({})
             .file("config.json")
             .argv({
-                "p": {
-                    alias: 'port',
-                    describe: 'the port to run on',
+                p: {
+                    alias: "port",
+                    describe: "the port to run on",
                 },
-                "e": {
-                    alias: 'endpoint',
-                    describe: 'the endpoint to use',
+                e: {
+                    alias: "endpoint",
+                    describe: "the endpoint to use",
                     demand: true,
-                }
+                },
             }).defaults({
-                "port": 3000,
-                "endpoint": undefined
+                port: 3000,
+                endpoint: undefined,
             });
-        const parsedUrl = URL.parse(Config._nconf.get('endpoint'));
+        const parsedUrl = URL.parse(Config._nconf.get("endpoint"));
         return Config._nconf;
     }
 
@@ -37,6 +37,5 @@ export class Config {
     public static get endpoint(): string {
         return Config.nconf.get("endpoint");
     }
-
 
 }
