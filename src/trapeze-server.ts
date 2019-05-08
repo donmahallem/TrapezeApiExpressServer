@@ -4,16 +4,16 @@ import * as helmet from "helmet";
 import { Server } from "http";
 import { resolve as pathResolve } from "path";
 export const api404Handler: express.RequestHandler = (req: express.Request,
-    res: express.Response,
-    next: express.NextFunction): void => {
+                                                      res: express.Response,
+                                                      next: express.NextFunction): void => {
     res.status(404).json({
         statusCode: 404,
     });
 };
 export const serverErrorHandler: express.ErrorRequestHandler = (err: any,
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction) => {
+                                                                req: express.Request,
+                                                                res: express.Response,
+                                                                next: express.NextFunction) => {
     // tslint:disable-next-line:no-console
     console.error(err);
     res.status(500).json({ error: true });
@@ -24,7 +24,7 @@ export class TrapezeServer {
     private readonly ngModulePath: string = pathResolve(__dirname +
         "./../node_modules/@donmahallem/trapeze-client-ng/dist/trapeze-client-ng");
     constructor(public readonly endpoint: string,
-        public readonly port: number) {
+                public readonly port: number) {
         this.app = express();
         this.app.use(helmet.contentSecurityPolicy({
             directives: {
