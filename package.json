@@ -25,6 +25,7 @@
     "dependencies": {
         "@donmahallem/trapeze-api-express-route": "^1.6.0",
         "@donmahallem/trapeze-api-types": "^1.2.0",
+        "cors": "^2.8.5",
         "express": "^4.16.4",
         "helmet": "^3.18.0",
         "nconf": "^0.10.0"
