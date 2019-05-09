@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import { validate, ValidatorResult } from "jsonschema";
-import * as configSchema from "./../dist/config-schema.json";
+import * as configSchema from "./config-schema.json";
 import { IServerConfig } from "./config.js";
 export const loadConfigFromFile: (filename: string) => IServerConfig = (filename: string): IServerConfig => {
     const data: string = fs.readFileSync(filename, { encoding: "utf-8" });
