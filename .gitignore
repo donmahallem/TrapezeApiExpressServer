@@ -4,3 +4,4 @@ data/
 coverage/
 dist/
 src/config-schema.json
+config.json

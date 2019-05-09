@@ -2,7 +2,7 @@
     "name": "@donmahallem/trapeze-api-express-server",
     "version": "0.0.1",
     "description": "A server implementation",
-    "main": "dist/index.js",
+    "main": "dist/cli.js",
     "types": "dist/index.d.ts",
     "private": false,
     "scripts": {
@@ -30,7 +30,8 @@
         "cors": "^2.8.5",
         "express": "^4.16.4",
         "helmet": "^3.18.0",
-        "jsonschema": "^1.2.4"
+        "jsonschema": "^1.2.4",
+        "nconf": "^0.10.0"
     },
     "devDependencies": {
         "@types/chai": "^4.1.7",

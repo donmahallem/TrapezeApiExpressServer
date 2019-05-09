@@ -6,9 +6,11 @@
     "ignore": [
         "src/**/*.spec.ts"
     ],
-    "exec": "ts-node ./src/index.ts",
+    "exec": "ts-node ./src/cli.ts",
     "args": [
         "--config",
-        "config.json"
+        "config.json",
+        "--port",
+        "9101"
     ]
 }

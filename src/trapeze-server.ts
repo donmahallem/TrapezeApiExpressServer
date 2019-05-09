@@ -5,16 +5,16 @@ import { Server } from "http";
 import { resolve as pathResolve } from "path";
 import { IServerConfig } from "./config";
 export const api404Handler: express.RequestHandler = (req: express.Request,
-                                                      res: express.Response,
-                                                      next: express.NextFunction): void => {
+    res: express.Response,
+    next: express.NextFunction): void => {
     res.status(404).json({
         statusCode: 404,
     });
 };
 export const serverErrorHandler: express.ErrorRequestHandler = (err: any,
-                                                                req: express.Request,
-                                                                res: express.Response,
-                                                                next: express.NextFunction) => {
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction) => {
     // tslint:disable-next-line:no-console
     console.error(err);
     res.status(500).json({ error: true });
@@ -38,8 +38,16 @@ export class TrapezeServer {
         this.app.use(serverErrorHandler);
     }
 
-    public start() {
-        this.server = this.app.listen(this.config.port);
+    public start(): Promise<void> {
+        return new Promise((resolve, reject): void => {
+            this.server = this.app.listen(this.config.port, (err?: any) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve();
+                }
+            });
+        })
     }
 
     public stop() {
