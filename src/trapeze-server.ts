@@ -4,6 +4,7 @@ import * as helmet from "helmet";
 import { Server } from "http";
 import * as cors from "cors";
 import { resolve as pathResolve } from "path";
+import { IServerConfig } from "./config";
 export const api404Handler: express.RequestHandler = (req: express.Request,
     res: express.Response,
     next: express.NextFunction): void => {
@@ -24,27 +25,11 @@ export class TrapezeServer {
     private server: Server;
     private readonly ngModulePath: string = pathResolve(__dirname +
         "./../node_modules/@donmahallem/trapeze-client-ng/dist/trapeze-client-ng");
-    constructor(public readonly endpoint: string,
-        public readonly port: number) {
+    constructor(public readonly config: IServerConfig) {
         this.app = express();
-        this.app.use(helmet.contentSecurityPolicy({
-            directives: {
-                connectSrc: ["'self'",
-                    "https://c.tile.openstreetmap.org",
-                    "https://b.tile.openstreetmap.org",
-                    "https://a.tile.openstreetmap.org"],
-                defaultSrc: ["'self'"],
-                imgSrc: ["'self'",
-                    "https://c.tile.openstreetmap.org",
-                    "https://b.tile.openstreetmap.org",
-                    "https://a.tile.openstreetmap.org",
-                    "data:"],
-                scriptSrc: ["'self'", "'unsafe-inline'"],
-                styleSrc: ["'self'", "'unsafe-inline'"],
-            },
-        }));
-        this.app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
-        this.app.use("/api", createTrapezeApiRoute(endpoint));
+        if (config.helmet)
+            this.app.use(helmet(config.helmet));
+        this.app.use("/api", createTrapezeApiRoute(config.endpoint));
         this.app.use("/api", api404Handler);
         this.app.use(express.static(this.ngModulePath));
         this.app.get("/*", (req, res) => {
@@ -54,7 +39,7 @@ export class TrapezeServer {
     }
 
     public start() {
-        this.server = this.app.listen(this.port);
+        this.server = this.app.listen(this.config.port);
     }
 
     public stop() {
