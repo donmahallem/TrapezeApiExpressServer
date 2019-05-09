@@ -2,20 +2,19 @@ import { createTrapezeApiRoute } from "@donmahallem/trapeze-api-express-route";
 import * as express from "express";
 import * as helmet from "helmet";
 import { Server } from "http";
-import * as cors from "cors";
 import { resolve as pathResolve } from "path";
 import { IServerConfig } from "./config";
 export const api404Handler: express.RequestHandler = (req: express.Request,
-    res: express.Response,
-    next: express.NextFunction): void => {
+                                                      res: express.Response,
+                                                      next: express.NextFunction): void => {
     res.status(404).json({
         statusCode: 404,
     });
 };
 export const serverErrorHandler: express.ErrorRequestHandler = (err: any,
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction) => {
+                                                                req: express.Request,
+                                                                res: express.Response,
+                                                                next: express.NextFunction) => {
     // tslint:disable-next-line:no-console
     console.error(err);
     res.status(500).json({ error: true });
@@ -27,8 +26,9 @@ export class TrapezeServer {
         "./../node_modules/@donmahallem/trapeze-client-ng/dist/trapeze-client-ng");
     constructor(public readonly config: IServerConfig) {
         this.app = express();
-        if (config.helmet)
+        if (config.helmet) {
             this.app.use(helmet(config.helmet));
+        }
         this.app.use("/api", createTrapezeApiRoute(config.endpoint));
         this.app.use("/api", api404Handler);
         this.app.use(express.static(this.ngModulePath));
