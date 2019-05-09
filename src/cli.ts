@@ -1,7 +1,7 @@
+import * as nconf from "nconf";
 import { IServerConfig } from "./config";
 import { loadConfigFromFile } from "./config-loader";
 import { TrapezeServer } from "./trapeze-server";
-import * as nconf from 'nconf';
 const nconfConfig: nconf.Provider = new nconf.Provider({})
     .argv({
         c: {
@@ -19,10 +19,11 @@ const nconfConfig: nconf.Provider = new nconf.Provider({})
         endpoint: undefined,
         port: 3000,
     });
-const filename: string = nconfConfig.get('config');
+const filename: string = nconfConfig.get("config");
 const config: IServerConfig = loadConfigFromFile(filename);
-if (nconfConfig.get('port')) {
-    config.port = nconfConfig.get('port');
+if (nconfConfig.get("port")) {
+    config.port = nconfConfig.get("port");
 }
 const server: TrapezeServer = new TrapezeServer(config);
-server.start();
+// tslint:disable-next-line:no-console
+server.start().then(() => console.log("started"));
