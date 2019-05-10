@@ -1,21 +1,25 @@
+/*!
+ * Source https://github.com/donmahallem/TrapezeApiExpressServer
+ */
+
 import { createTrapezeApiRoute } from "@donmahallem/trapeze-api-express-route";
+import * as cors from "cors";
 import * as express from "express";
 import * as helmet from "helmet";
 import { Server } from "http";
 import { resolve as pathResolve } from "path";
 import { IServerConfig } from "./config";
-import * as cors from "cors";
 export const api404Handler: express.RequestHandler = (req: express.Request,
-    res: express.Response,
-    next: express.NextFunction): void => {
+                                                      res: express.Response,
+                                                      next: express.NextFunction): void => {
     res.status(404).json({
         statusCode: 404,
     });
 };
 export const serverErrorHandler: express.ErrorRequestHandler = (err: any,
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction) => {
+                                                                req: express.Request,
+                                                                res: express.Response,
+                                                                next: express.NextFunction) => {
     if (err.statusCode) {
         res.status(err.statusCode).json({
             error: true,
@@ -28,6 +32,7 @@ export const serverErrorHandler: express.ErrorRequestHandler = (err: any,
             reqUrl = err.options.url;
             reqMethod = err.options.method;
         }
+        // tslint:disable-next-line:no-console
         console.error("proxy", err.statusCode, reqMethod, reqUrl);
         return;
     }

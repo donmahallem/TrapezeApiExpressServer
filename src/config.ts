@@ -1,3 +1,7 @@
+/*!
+ * Source https://github.com/donmahallem/TrapezeApiExpressServer
+ */
+
 import { CorsOptions } from "cors";
 import { IHelmetConfiguration } from "helmet";
 /**

@@ -1,3 +1,7 @@
+/*!
+ * Source https://github.com/donmahallem/TrapezeApiExpressServer
+ */
+
 import * as nconf from "nconf";
 import { IServerConfig } from "./config";
 import { loadConfigFromFile } from "./config-loader";

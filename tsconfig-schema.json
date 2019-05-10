@@ -1,9 +1,12 @@
 {
     "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "listFiles": true
+    },
     "include": [
-        "src/**/*.ts",
+        "src/**/*.ts"
     ],
     "exclude": [
-        "src/config-loader.ts"
+        "./src/config-loader.ts"
     ]
 }
