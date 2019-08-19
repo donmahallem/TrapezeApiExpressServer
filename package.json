@@ -35,7 +35,7 @@
     },
     "devDependencies": {
         "@types/chai": "^4.2.0",
-        "@types/cors": "^2.8.5",
+        "@types/cors": "^2.8.6",
         "@types/helmet": "0.0.43",
         "@types/mocha": "^5.2.7",
         "@types/node": "^12.7.2",
