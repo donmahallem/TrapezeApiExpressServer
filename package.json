@@ -39,7 +39,7 @@
         "@types/helmet": "~0.0.44",
         "@types/mocha": "~5.2.7",
         "@types/node": "~12.7.9",
-        "@types/sinon": "~7.0.13",
+        "@types/sinon": "~7.5.0",
         "apidoc": "~0.17.7",
         "chai": "~4.2.0",
         "mocha": "~6.2.1",
