@@ -38,7 +38,7 @@
         "@types/cors": "~2.8.6",
         "@types/helmet": "~0.0.45",
         "@types/mocha": "~5.2.7",
-        "@types/node": "~12.12.6",
+        "@types/node": "~12.12.7",
         "@types/sinon": "~7.5.0",
         "apidoc": "~0.17.7",
         "chai": "~4.2.0",
