@@ -30,7 +30,7 @@
         "cors": "~2.8.5",
         "express": "~4.17.1",
         "helmet": "~3.21.2",
-        "jsonschema": "~1.2.4",
+        "jsonschema": "~1.2.5",
         "nconf": "~0.10.0"
     },
     "devDependencies": {
