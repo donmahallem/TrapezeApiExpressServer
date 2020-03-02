@@ -34,7 +34,7 @@
         "nconf": "~0.10.0"
     },
     "devDependencies": {
-        "@types/chai": "~4.2.9",
+        "@types/chai": "~4.2.10",
         "@types/cors": "~2.8.6",
         "@types/helmet": "~0.0.45",
         "@types/mocha": "~7.0.1",
