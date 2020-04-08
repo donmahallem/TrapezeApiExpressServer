@@ -7,6 +7,9 @@
         "sourceMap": true,
         "declaration": true,
         "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "strictNullChecks": true,
+        "noUnusedLocals": true
     },
     "typeAcquisition": {
         "enable": true

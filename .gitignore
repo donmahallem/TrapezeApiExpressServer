@@ -1,5 +1,7 @@
 node_modules/
 data/
-dist/
 .nyc_output/
 coverage/
+dist/
+src/config-schema.json
+config.json
